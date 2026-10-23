@@ -39,25 +39,6 @@ state_change <- tbl(con, "state_scores") |>
 ```
 
 ```{r}
-score_change |>
-  ggplot(aes(x = rla_change, fill = rla_change > 0)) +
-  geom_histogram(bins = 60, boundary = 0, show.legend = FALSE) +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(
-    title = "Change in School District Reading Scores (2015 to 2023)",
-    subtitle = paste0(
-      "Most of the ",
-      scales::comma(nrow(score_change)),
-      " U.S. school districts saw reading scores decline"
-    ),
-    x = "Change in Reading Score (2023 - 2015)",
-    y = "Number of Districts",
-    caption = "Source: Stanford Education Data Archive (SEDA 2025)"
-  ) +
-  theme_minimal()
-```
-
-```{r}
 #| fig-height: 8
 state_change |>
   mutate(state_name = fct_reorder(state_name, rla_2023)) |>
